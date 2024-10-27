@@ -15,11 +15,11 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
-app.use(express.static("public")); // Serve static files from the 'public' directory
+app.use(express.static("public"));
 
 // Serve index.html at the root route
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html")); // Serve the index.html
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // Redirect requests for index.html to /
@@ -29,7 +29,7 @@ app.get("/index.html", (req, res) => {
 
 // Function to download audio
 const downloadAudio = async (videoURL) => {
-  const audioFilePath = path.join(__dirname, "audio.mp3"); // Path to save audio
+  const audioFilePath = path.join(__dirname, "audio.mp3");
   const audioStream = ytdl(videoURL, {
     filter: (format) => format.hasAudio,
     quality: "highest",
@@ -56,7 +56,7 @@ const downloadAudio = async (videoURL) => {
 
 // Function to download video
 const downloadVideo = async (videoURL) => {
-  const videoFilePath = path.join(__dirname, "video.mp4"); // Path to save video
+  const videoFilePath = path.join(__dirname, "video.mp4");
   const videoStream = ytdl(videoURL, {
     filter: (format) => format.hasVideo,
     quality: "highestvideo",
@@ -82,8 +82,8 @@ const downloadVideo = async (videoURL) => {
 };
 
 // Function to combine audio and video
-const combineAudioVideo = async (audioFilePath, videoFilePath, title) => {
-  const outputFilePath = path.join(__dirname, `${title}.mp4`); // Path for the final output using video title
+const combineAudioVideo = async (audioFilePath, videoFilePath) => {
+  const outputFilePath = path.join(__dirname, "output.mp4");
   return new Promise((resolve, reject) => {
     ffmpeg()
       .setFfmpegPath(ffmpegPath)
@@ -126,26 +126,19 @@ app.post("/download", async (req, res) => {
   const { videoURL } = req.body;
 
   try {
-    const info = await ytdl.getInfo(videoURL); // Fetch video info
-    const title = info.videoDetails.title
-      .replace(/[^a-z0-9]/gi, "_")
-      .toLowerCase(); // Clean title for filename
-
     const audioFilePath = await downloadAudio(videoURL);
     const videoFilePath = await downloadVideo(videoURL);
     const outputFilePath = await combineAudioVideo(
       audioFilePath,
-      videoFilePath,
-      title
+      videoFilePath
     );
 
-    // Respond with the output file path for download
     res.json({
       success: true,
       outputFile: `/download/${path.basename(outputFilePath)}`,
     });
 
-    // Schedule deletion of the temporary audio and video files after 10 minutes
+    // Schedule deletion of the temporary files after 10 minutes
     deleteFilesAfterDelay(
       [audioFilePath, videoFilePath, outputFilePath],
       10 * 60 * 1000
