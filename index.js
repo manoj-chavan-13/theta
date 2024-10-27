@@ -33,6 +33,12 @@ const downloadAudio = async (videoURL) => {
   const audioStream = ytdl(videoURL, {
     filter: (format) => format.hasAudio,
     quality: "highest",
+    requestOptions: {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+      },
+    },
   });
   return new Promise((resolve, reject) => {
     audioStream
@@ -54,6 +60,12 @@ const downloadVideo = async (videoURL) => {
   const videoStream = ytdl(videoURL, {
     filter: (format) => format.hasVideo,
     quality: "highestvideo",
+    requestOptions: {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+      },
+    },
   });
   return new Promise((resolve, reject) => {
     videoStream
