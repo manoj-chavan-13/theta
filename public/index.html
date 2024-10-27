@@ -119,7 +119,7 @@
       loading.classList.remove('hidden');
       resultDiv.innerHTML = ''; // Clear previous results
 
-      const response = await fetch('/download', {
+      const response = await fetch('https://theta-bucket.vercel.app/download', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
