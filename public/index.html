@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theta by Playbucket</title>
+    <!-- Favicon -->
+    <link rel="icon" href="LOGO.jpeg" type="image/x-icon"> <!-- Update path as needed -->
+
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Font Awesome CDN for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Custom Spinner Animation */
+    .spinner {
+      border-top-color: #ff4757;
+      /* Change to match your theme */
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    /* Full Page Overlay for Theta */
+    .theta-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.1);
+      /* Light white color for overlay */
+      font-size: 30vw;
+      /* Responsive font size */
+      font-weight: 900;
+      text-align: center;
+      pointer-events: none;
+      /* Allow clicks to pass through */
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-r from-purple-300 to-blue-400 font-sans relative">
+
+  <!-- Full Page Overlay with Theta Name -->
+  <div class="theta-overlay">Theta</div>
+
+  <!-- Hero Section -->
+  <section class="flex flex-col items-center justify-center min-h-screen text-center py-5 relative z-10">
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4">Download YouTube Videos Instantly</h1>
+    <p class="text-sm md:text-base lg:text-lg text-gray-200 mb-6">Experience seamless video downloads with Theta by
+      Playbucket. Just paste your video URL and enjoy!</p>
+
+    <!-- Note about video length -->
+    <p class="text-xs text-white mb-4">*Note: For best results, use short videos only. Large videos may take longer
+      to process.</p>
+
+    <form id="downloadForm"
+      class="w-full max-w-lg mx-auto flex flex-row justify-center items-center space-x-2 px-8 md:px-0">
+      <input type="text" id="videoURL" placeholder="Enter YouTube video URL" required
+        class="video-url-input py-3 px-4 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-200">
+      <button type="submit"
+        class="flex items-center justify-center bg-purple-600 text-white py-4 px-4 rounded-md hover:bg-purple-700 transition duration-200">
+        <i class="fas fa-download"></i>
+      </button>
+    </form>
+
+    <div id="loading" class="hidden mt-4">
+      <div class="flex items-center justify-center">
+        <div class="spinner border-4 border-gray-200 rounded-full w-8 h-8 animate-spin"></div>
+      </div>
+      <p class="mt-2 text-center text-purple-600">Your video is being prepared...</p>
+    </div>
+
+    <div id="result" class="mt-6 text-center"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="w-full bg-white shadow mt-6 p-4 text-center z-10">
+    <p class="text-gray-600 text-sm">&copy; 2024 Playbucket. All rights reserved.</p>
+    <p class="text-gray-600 text-sm">
+      <a href="privacy.html" class="hover:text-purple-600">Privacy Policy</a> |
+      <a href="terms.html" class="hover:text-purple-600">Terms of Service</a>
+    </p>
+    <p id="currentDate" class="text-gray-600 mt-2 text-sm"></p>
+  </footer>
+
+  <script>
+    // Set today's date
+    document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+
+    // Event listener for the form submission
+    document.getElementById('downloadForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const videoURL = document.getElementById('videoURL').value;
+      const loading = document.getElementById('loading');
+      const resultDiv = document.getElementById('result');
+
+      // Show loading animation
+      loading.classList.remove('hidden');
+      resultDiv.innerHTML = ''; // Clear previous results
+
+      const response = await fetch('/download', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ videoURL }),
+      });
+
+      const data = await response.json();
+      loading.classList.add('hidden'); // Hide loading animation
+      if (data.success) {
+        resultDiv.innerHTML = `
+          <p class="text-green-600 font-semibold">
+            <a href="${data.outputFile}" download class="text-blue-600 underline hover:text-blue-800 font-bold transition duration-200">Download your video</a>
+          </p>`;
+      } else {
+        resultDiv.innerHTML = `
+          <p class="text-red-600 font-semibold">Error: ${data.message}</p>`;
+      }
+    });
+  </script>
+</body>
+
+</html>
