@@ -16,8 +16,8 @@
 ### 🖥️ User-Friendly Interface
 Navigate easily through a clean and straightforward layout, ensuring a hassle-free experience.
 
-### 📥 Multiple Formats
-Download videos in various formats and resolutions to suit your preferences. Enjoy flexibility in how you save content!
+### 📥 High Formats
+Download videos in High formats and resolutions to suit your preferences. Enjoy high quality on save content!
 
 ### 🌍 Open Source
 Contribute and collaborate! **Theta** is open to contributions from anyone looking to enhance its functionality. Join the community and help us grow!
