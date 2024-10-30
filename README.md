@@ -1,7 +1,8 @@
 
 
 # Theta by PlayBucket
-# ![Theta Logo](https://theta-bucket.vercel.app/LOGO.jpeg) Theta by PlayBucket
+# <div style="text-align: center;"><img src="https://theta-bucket.vercel.app/LOGO.jpeg" alt="Theta Logo" width="200"/></div>
+
 ## Overview
 
 **Theta** is an intuitive platform designed for downloading YouTube videos seamlessly. With a user-friendly interface, Theta simplifies the process of saving your favorite videos for offline viewing, making it an essential tool for content lovers everywhere.
