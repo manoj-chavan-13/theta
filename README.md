@@ -22,9 +22,6 @@ Download videos in various formats and resolutions to suit your preferences. Enj
 ### 🌍 Open Source
 Contribute and collaborate! **Theta** is open to contributions from anyone looking to enhance its functionality. Join the community and help us grow!
 
-### 🔗 Live Demo
-Experience the platform firsthand at [theta-bucket.vercel.app](https://theta-bucket.vercel.app/).
-
 
 ## 🎥 Live Demo
 
