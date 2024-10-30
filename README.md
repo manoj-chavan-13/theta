@@ -1,23 +1,37 @@
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM+5A2Z5X9C1oAdQzDJJqHcLIX5iWzW32Y1p1D" crossorigin="anonymous">
 
 # Theta by PlayBucket
 
 ![image](https://github.com/user-attachments/assets/4a8e9817-b680-448d-9690-0aaf201965b6)
 
-## Overview
+## 🌟 Overview
 
-**Theta** is an intuitive platform designed for downloading YouTube videos seamlessly. With a user-friendly interface, Theta simplifies the process of saving your favorite videos for offline viewing, making it an essential tool for content lovers everywhere.
+**Theta** is an intuitive platform designed for downloading YouTube videos seamlessly. With a user-friendly interface, Theta simplifies the process of saving your favorite videos for offline viewing, making it an essential tool for content lovers everywhere. 
 
-## Key Features
+---
 
-- **User-Friendly Interface**: Navigate easily through a clean and straightforward layout.
-- **Multiple Formats**: Download videos in various formats and resolutions to suit your preferences.
-- **Open Source**: Contribute and collaborate! Theta is open to contributions from anyone looking to enhance its functionality.
-- **Live Demo**: Experience the platform firsthand at [theta-bucket.vercel.app](https://theta-bucket.vercel.app/).
+## 🚀 Key Features
 
-## Live Demo
+### 🖥️ User-Friendly Interface
+Navigate easily through a clean and straightforward layout, ensuring a hassle-free experience.
 
-Explore Theta in action here: [theta-bucket.vercel.app](https://theta-bucket.vercel.app/).
+### 📥 Multiple Formats
+Download videos in various formats and resolutions to suit your preferences. Enjoy flexibility in how you save content!
+
+### 🌍 Open Source
+Contribute and collaborate! **Theta** is open to contributions from anyone looking to enhance its functionality. Join the community and help us grow!
+
+### 🔗 Live Demo
+Experience the platform firsthand at [theta-bucket.vercel.app](https://theta-bucket.vercel.app/).
+
+---
+
+## 🎥 Live Demo
+
+Explore Theta in action here: [theta-bucket.vercel.app](https://theta-bucket.vercel.app/)
+
+---
 
 ## Installation
 
@@ -91,8 +105,22 @@ This project is licensed under the **ISC License**. See the [LICENSE](LICENSE) f
 
 ## Contact
 
-For questions, issues, or feedback, please feel free to raise an issue on the [GitHub repository](https://github.com/manoj-chavan-13/theta/issues) or connect with me on LinkedIn: [manoj-chavan-1311](https://www.linkedin.com/in/manoj-chavan-1311).
+For questions, issues, or feedback, please feel free to raise an issue on the 
+<a href="https://github.com/manoj-chavan-13/theta/issues" style="text-decoration: none;">
+    <span style="color: #333;">
+        <i class="fa fa-github" aria-hidden="true" style="margin-right: 5px;"></i> 
+        GitHub Repository
+    </span>
+</a> 
+or connect with me on LinkedIn: 
+<a href="https://www.linkedin.com/in/manoj-chavan-1311" style="text-decoration: none;">
+    <span style="color: #0077B5;">
+        <i class="fa fa-linkedin" aria-hidden="true" style="margin-right: 5px;"></i> 
+        manoj-chavan-1311
+    </span>
+</a>.
 
 ---
 
 Thank you for exploring **Theta**! We hope you find it useful for effortlessly downloading your favorite YouTube videos. Happy downloading!
+
