@@ -5,11 +5,37 @@
 
 ![image](https://github.com/user-attachments/assets/4a8e9817-b680-448d-9690-0aaf201965b6)
 
+
+
+# Table of Contents
+
+1. [Overview](#-overview)
+2. [Key Features](#-key-features)
+   - [User-Friendly Interface](#-user-friendly-interface)
+   - [High Formats](#-high-formats)
+   - [Open Source](#-open-source)
+3. [Live Demo](#-live-demo)
+4. [Installation](#installation)
+   - [Prerequisites](#prerequisites)
+   - [Steps to Run Locally](#steps-to-run-locally)
+5. [Common Issues](#common-issues)
+   - [Troubleshooting Tips](#troubleshooting-tips)
+6. [Contribution](#contribution)
+7. [Dependencies](#-dependencies)
+   - [Package List](#package-list)
+   - [Installation](#installation-1)
+8. [Functions to Download Audio and Video](#functions-to-download-audio-and-video)
+   - [Download Audio Function](#download-audio-function)
+   - [Download Video Function](#download-video-function)
+   - [Combine Audio and Video Function](#combine-audio-and-video-function)
+   - [Delete Files After a Delay](#delete-files-after-a-delay)
+9. [Express Endpoints](#express-endpoints)
+   - [Download Endpoint](#download-endpoint)
+
+
 ## 🌟 Overview
 
 **Theta** is an intuitive platform designed for downloading YouTube videos seamlessly. With a user-friendly interface, Theta simplifies the process of saving your favorite videos for offline viewing, making it an essential tool for content lovers everywhere. 
-
-
 
 ## 🚀 Key Features
 
