@@ -95,6 +95,93 @@ We welcome and encourage contributions to **Theta**! To get involved, please fol
    ```
 6. **Open a Pull Request**: Navigate to the original repository and submit a new Pull Request, detailing your changes.
 
+
+
+## 📦 Dependencies
+
+**Theta** utilizes several key packages to enhance its functionality. Below is a list of the packages used, their purposes, and basic usage instructions:
+
+### Package List
+
+- **[@distube/ytdl-core](https://www.npmjs.com/package/@distube/ytdl-core)**
+  - **Purpose**: Used for downloading YouTube videos.
+  - **Usage**: Import the package to handle video downloads. Example:
+    ```javascript
+    import ytdl from "@distube/ytdl-core";
+    ```
+
+- **[@ffmpeg/ffmpeg](https://www.npmjs.com/package/@ffmpeg/ffmpeg)**
+  - **Purpose**: Provides FFmpeg functionalities for video processing, allowing you to manipulate audio and video files easily.
+  - **Usage**: Import and use FFmpeg to process media files. Example:
+    ```javascript
+    import ffmpeg from "fluent-ffmpeg";
+    ```
+
+- **[body-parser](https://www.npmjs.com/package/body-parser)**
+  - **Purpose**: Middleware for parsing incoming request bodies in a middleware before your handlers, available under the `req.body` property.
+  - **Usage**: Use this middleware to parse JSON bodies:
+    ```javascript
+    app.use(bodyParser.json());
+    ```
+
+- **[cors](https://www.npmjs.com/package/cors)**
+  - **Purpose**: Middleware for enabling Cross-Origin Resource Sharing (CORS), allowing your application to communicate with resources from different origins.
+  - **Usage**: Enable CORS with:
+    ```javascript
+    import cors from "cors";
+    app.use(cors());
+    ```
+
+- **[express](https://www.npmjs.com/package/express)**
+  - **Purpose**: A web framework for Node.js, used to build the application and handle routing.
+  - **Usage**: Create an Express application:
+    ```javascript
+    import express from "express";
+    const app = express();
+    ```
+
+- **[ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static)**
+  - **Purpose**: Provides a static FFmpeg binary for easy use in your application without needing to install FFmpeg separately.
+  - **Usage**: Set the path to the FFmpeg binary:
+    ```javascript
+    import ffmpegPath from "ffmpeg-static";
+    ffmpeg().setFfmpegPath(ffmpegPath);
+    ```
+
+- **[fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg)**
+  - **Purpose**: A wrapper around FFmpeg that makes it easier to work with video and audio processing in Node.js.
+  - **Usage**: Use this package for fluent API calls to FFmpeg:
+    ```javascript
+    ffmpeg()
+      .input("video.mp4")
+      .output("output.mp4")
+      .run();
+    ```
+
+- **[mergerino](https://www.npmjs.com/package/mergerino)**
+  - **Purpose**: A tool for merging media files, allowing you to combine different audio or video streams.
+  - **Usage**: Utilize this package for merging functionalities as required in your application.
+
+- **[mp4box](https://www.npmjs.com/package/mp4box)**
+  - **Purpose**: Used for MP4 media manipulation, enabling you to edit and manage MP4 files.
+  - **Usage**: Import and use it as needed for MP4 file operations.
+
+- **[ytdl-core](https://www.npmjs.com/package/ytdl-core)**
+  - **Purpose**: Library to download YouTube videos, providing options for formats and qualities.
+  - **Usage**: Similar to `@distube/ytdl-core`, you can use it to handle video downloads.
+
+### Installation
+
+To install the dependencies, run:
+
+```bash
+npm install @distube/ytdl-core @ffmpeg/ffmpeg body-parser cors express ffmpeg-static fluent-ffmpeg mergerino mp4box ytdl-core
+```
+
+This will install all the necessary packages for **Theta** to function properly.
+
+
+
 ## License
 
 This project is licensed under the **ISC License**. See the [LICENSE](LICENSE) file for more details.
