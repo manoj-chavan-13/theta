@@ -11,9 +11,6 @@
 
 1. [Overview](#-overview)
 2. [Key Features](#-key-features)
-   - [User-Friendly Interface](#-user-friendly-interface)
-   - [High Formats](#-high-formats)
-   - [Open Source](#-open-source)
 3. [Live Demo](#-live-demo)
 4. [Installation](#installation)
    - [Prerequisites](#prerequisites)
