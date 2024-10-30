@@ -1,7 +1,6 @@
 
 
 # Theta by PlayBucket
-# <div style="text-align: center;"><img src="https://theta-bucket.vercel.app/LOGO.jpeg" alt="Theta Logo" width="200"/></div>
 
 ![image](https://github.com/user-attachments/assets/4a8e9817-b680-448d-9690-0aaf201965b6)
 
