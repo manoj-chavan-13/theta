@@ -9,7 +9,7 @@
 
 **Theta** is an intuitive platform designed for downloading YouTube videos seamlessly. With a user-friendly interface, Theta simplifies the process of saving your favorite videos for offline viewing, making it an essential tool for content lovers everywhere. 
 
----
+
 
 ## 🚀 Key Features
 
@@ -25,13 +25,12 @@ Contribute and collaborate! **Theta** is open to contributions from anyone looki
 ### 🔗 Live Demo
 Experience the platform firsthand at [theta-bucket.vercel.app](https://theta-bucket.vercel.app/).
 
----
 
 ## 🎥 Live Demo
 
 Explore Theta in action here: [theta-bucket.vercel.app](https://theta-bucket.vercel.app/)
 
----
+
 
 ## Installation
 
