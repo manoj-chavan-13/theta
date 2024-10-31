@@ -27,19 +27,28 @@ app.get("/index.html", (req, res) => {
   res.redirect("/");
 });
 
+// Validate URL format
+const isValidURL = (url) => {
+  try {
+    new URL(url);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 // Function to download audio
 const downloadAudio = async (videoURL) => {
+  if (!ytdl.validateURL(videoURL)) {
+    throw new Error("Invalid YouTube URL");
+  }
+
   const audioFilePath = path.join(__dirname, "audio.mp3");
   const audioStream = ytdl(videoURL, {
     filter: (format) => format.hasAudio,
     quality: "highest",
-    requestOptions: {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-      },
-    },
   });
+  
   return new Promise((resolve, reject) => {
     audioStream
       .pipe(fs.createWriteStream(audioFilePath))
@@ -49,21 +58,25 @@ const downloadAudio = async (videoURL) => {
       })
       .on("error", (err) => {
         console.error("Error downloading audio:", err);
-        reject(err);
+        reject(new Error("Failed to download audio. Please try again."));
       });
   });
 };
 
+
 // Function to download video
 const downloadVideo = async (videoURL) => {
+  if (!ytdl.validateURL(videoURL)) {
+    throw new Error("Invalid YouTube URL");
+  }
+
   const videoFilePath = path.join(__dirname, "video.mp4");
   const videoStream = ytdl(videoURL, {
     filter: (format) => format.hasVideo,
     quality: "highestvideo",
     requestOptions: {
       headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
       },
     },
   });
@@ -76,7 +89,7 @@ const downloadVideo = async (videoURL) => {
       })
       .on("error", (err) => {
         console.error("Error downloading video:", err);
-        reject(err);
+          reject(new Error("Failed to download video. Please try again."));
       });
   });
 };
@@ -98,7 +111,7 @@ const combineAudioVideo = async (audioFilePath, videoFilePath) => {
       })
       .on("error", (err) => {
         console.error("Error during merging:", err);
-        reject(err);
+        reject(new Error("Failed to combine audio and video. Please try again."));
       })
       .run();
   });
@@ -112,9 +125,7 @@ const deleteFilesAfterDelay = (filePaths, delay) => {
         if (err) {
           console.error(`Error deleting file ${filePath}:`, err);
         } else {
-          console.log(
-            `File deleted after ${delay / 1000} seconds: ${filePath}`
-          );
+          console.log(`File deleted after ${delay / 1000} seconds: ${filePath}`);
         }
       });
     });
@@ -125,28 +136,28 @@ const deleteFilesAfterDelay = (filePaths, delay) => {
 app.post("/download", async (req, res) => {
   const { videoURL } = req.body;
 
+  if (!isValidURL(videoURL)) {
+    return res.status(400).json({ success: false, message: "Invalid URL format. Please enter a valid URL." });
+  }
+
   try {
     const audioFilePath = await downloadAudio(videoURL);
     const videoFilePath = await downloadVideo(videoURL);
-    const outputFilePath = await combineAudioVideo(
-      audioFilePath,
-      videoFilePath
-    );
+    const outputFilePath = await combineAudioVideo(audioFilePath, videoFilePath);
 
     res.json({
       success: true,
       outputFile: `/download/${path.basename(outputFilePath)}`,
     });
 
-    // Schedule deletion of the temporary files after 10 minutes
-    deleteFilesAfterDelay(
-      [audioFilePath, videoFilePath, outputFilePath],
-      10 * 60 * 1000
-    );
+    deleteFilesAfterDelay([audioFilePath, videoFilePath, outputFilePath], 10 * 60 * 1000);
   } catch (error) {
-    res.json({ success: false, message: error.message });
+    console.error("Error processing download request:", error.message || error);
+    const message = "An error occurred while processing your request. Please try again.";
+    res.status(500).json({ success: false, message });
   }
 });
+
 
 // Endpoint to serve the output file for download
 app.get("/download/:filename", (req, res) => {
