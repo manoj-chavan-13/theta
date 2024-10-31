@@ -108,17 +108,18 @@
     // Set today's date
     document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
 
-    // Event listener for the form submission
+// Event listener for the form submission
     document.getElementById('downloadForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const videoURL = document.getElementById('videoURL').value;
-      const loading = document.getElementById('loading');
-      const resultDiv = document.getElementById('result');
+    e.preventDefault();
+    const videoURL = document.getElementById('videoURL').value;
+    const loading = document.getElementById('loading');
+    const resultDiv = document.getElementById('result');
+  
+    // Show loading animation
+    loading.classList.remove('hidden');
+    resultDiv.innerHTML = ''; // Clear previous results
 
-      // Show loading animation
-      loading.classList.remove('hidden');
-      resultDiv.innerHTML = ''; // Clear previous results
-
+    try {
       const response = await fetch('/download', {
         method: 'POST',
         headers: {
@@ -129,6 +130,7 @@
 
       const data = await response.json();
       loading.classList.add('hidden'); // Hide loading animation
+
       if (data.success) {
         resultDiv.innerHTML = `
           <p class="text-green-600 font-semibold">
@@ -136,9 +138,21 @@
           </p>`;
       } else {
         resultDiv.innerHTML = `
-          <p class="text-red-600 font-semibold">Error: ${data.message}</p>`;
+          <div class="flex items-center justify-center bg-red-100 border border-red-300 text-red-700 p-4 rounded-md">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            <span class="font-semibold">Error:</span> ${data.message}
+          </div>`;
       }
-    });
+    } catch (error) {
+      loading.classList.add('hidden'); // Hide loading animation
+      resultDiv.innerHTML = `
+        <div class="flex items-center justify-center bg-red-100 border border-red-300 text-red-700 p-4 rounded-md">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            <span class="font-semibold">Error:Failed to connect to the server. Please check your network and try again.</span>
+          </div>`;
+    }
+  });
+
   </script>
 </body>
 
